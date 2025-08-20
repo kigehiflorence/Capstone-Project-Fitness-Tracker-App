@@ -19,6 +19,13 @@ A simple and responsive fitness tracking application built with **React** and **
 - 💾 **Local Storage** – Persist workout logs between sessions
 - 📱 **Responsive Design** – Optimized for desktop and mobile
 - ⚡ **Tailwind CSS** – For clean, modern, utility-first styling
+-  📋 **Workout Logging** – Add custom workouts with duration, category, and notes  
+- ⏱ **Progress Overview** – Track completed workouts  
+- 🎨 **Modern UI** – Built with Tailwind CSS for responsiveness  
+- ⚡ **State Management** – React hooks (`useState`) for handling workout data  
+- 🔀 **Routing** – Navigation using `react-router-dom`  
+- 🧪 **Testing Ready** – Configured with React Testing Library + Jest  
+
 
 ---
 
