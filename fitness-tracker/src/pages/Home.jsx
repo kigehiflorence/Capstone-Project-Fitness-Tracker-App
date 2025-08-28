@@ -12,11 +12,12 @@ export default function Home() {
     if (!exercise || !sets || !reps || !weight) return;
 
     const newWorkout = {
+      id: Date.now(),
       exercise,
       sets,
       reps,
       weight,
-      date: new Date().toLocaleDateString(), // Add timestamp
+      date: new Date().toLocaleDateString(),
     };
 
     setWorkouts([newWorkout, ...workouts]); // latest on top
@@ -29,70 +30,84 @@ export default function Home() {
   };
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Log Your Workout</h1>
+    <div className="min-h-screen bg-black text-white p-6">
+      <h1 className="text-4xl font-bold text-pink-500 mb-8">Workout Tracker</h1>
 
-      {/* Workout Form */}
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <input
-          type="text"
-          placeholder="Exercise"
-          value={exercise}
-          onChange={(e) => setExercise(e.target.value)}
-          className="w-full border p-2 rounded"
-        />
-        <input
-          type="number"
-          placeholder="Sets"
-          value={sets}
-          onChange={(e) => setSets(e.target.value)}
-          className="w-full border p-2 rounded"
-        />
-        <input
-          type="number"
-          placeholder="Reps"
-          value={reps}
-          onChange={(e) => setReps(e.target.value)}
-          className="w-full border p-2 rounded"
-        />
-        <input
-          type="number"
-          placeholder="Weight (kg)"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-          className="w-full border p-2 rounded"
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Save Workout
-        </button>
-      </form>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Workout Form */}
+        <div className="bg-gray-900 p-6 rounded-2xl shadow-lg">
+          <h2 className="text-xl font-semibold mb-4">Log Your Workout</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Exercise"
+              value={exercise}
+              onChange={(e) => setExercise(e.target.value)}
+              className="w-full p-3 rounded-lg bg-black border border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+            <input
+              type="number"
+              placeholder="Sets"
+              value={sets}
+              onChange={(e) => setSets(e.target.value)}
+              className="w-full p-3 rounded-lg bg-black border border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+            <input
+              type="number"
+              placeholder="Reps"
+              value={reps}
+              onChange={(e) => setReps(e.target.value)}
+              className="w-full p-3 rounded-lg bg-black border border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+            <input
+              type="number"
+              placeholder="Weight (kg)"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              className="w-full p-3 rounded-lg bg-black border border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+            <button
+              type="submit"
+              className="w-full bg-pink-500 py-3 rounded-xl text-white font-semibold hover:bg-pink-600 transition"
+            >
+              Save Workout
+            </button>
+          </form>
 
-      {/* Summary */}
-      {workouts.length > 0 && (
-        <div className="mt-6 p-4 bg-gray-100 rounded shadow">
-          <h3 className="text-lg font-semibold">Summary</h3>
-          <p>Total Workouts: {workouts.length}</p>
-        </div>
-      )}
-
-      {/* Workout List */}
-      <h3 className="text-xl font-bold mt-6">Workout History</h3>
-      <ul className="mt-2 space-y-3">
-        {workouts.map((log, index) => (
-          <li key={index} className="border p-3 rounded shadow-sm bg-white">
-            <div className="flex justify-between">
-              <span className="font-semibold">{log.exercise}</span>
-              <span className="text-sm text-gray-500">{log.date}</span>
+          {/* Summary */}
+          {workouts.length > 0 && (
+            <div className="mt-6 p-4 bg-black rounded-xl border border-pink-500 shadow">
+              <h3 className="text-lg font-semibold text-pink-400">Summary</h3>
+              <p>Total Workouts: {workouts.length}</p>
             </div>
-            <p className="text-gray-700">
-              {log.sets} sets x {log.reps} reps @ {log.weight}kg
-            </p>
-          </li>
-        ))}
-      </ul>
+          )}
+        </div>
+
+        {/* Workout History */}
+        <div className="bg-gray-900 p-6 rounded-2xl shadow-lg">
+          <h2 className="text-xl font-semibold mb-4">Workout History</h2>
+          <ul className="space-y-3">
+            {workouts.length === 0 ? (
+              <p className="text-gray-400">No workouts yet.</p>
+            ) : (
+              workouts.map((w) => (
+                <li
+                  key={w.id}
+                  className="p-3 rounded-lg bg-black border border-pink-500 shadow"
+                >
+                  <div className="flex justify-between">
+                    <strong>{w.exercise}</strong>
+                    <span className="text-sm text-gray-400">{w.date}</span>
+                  </div>
+                  <p className="text-gray-300">
+                    {w.sets} sets × {w.reps} reps @ {w.weight}kg
+                  </p>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
