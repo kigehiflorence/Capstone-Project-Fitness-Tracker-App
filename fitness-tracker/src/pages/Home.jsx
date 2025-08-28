@@ -11,8 +11,15 @@ export default function Home() {
     e.preventDefault();
     if (!exercise || !sets || !reps || !weight) return;
 
-    const newWorkout = { exercise, sets, reps, weight };
-    setWorkouts([...workouts, newWorkout]);
+    const newWorkout = {
+      exercise,
+      sets,
+      reps,
+      weight,
+      date: new Date().toLocaleDateString(), // Add timestamp
+    };
+
+    setWorkouts([newWorkout, ...workouts]); // latest on top
 
     // reset form
     setExercise("");
@@ -57,18 +64,32 @@ export default function Home() {
         />
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
           Save Workout
         </button>
       </form>
 
+      {/* Summary */}
+      {workouts.length > 0 && (
+        <div className="mt-6 p-4 bg-gray-100 rounded shadow">
+          <h3 className="text-lg font-semibold">Summary</h3>
+          <p>Total Workouts: {workouts.length}</p>
+        </div>
+      )}
+
       {/* Workout List */}
       <h3 className="text-xl font-bold mt-6">Workout History</h3>
-      <ul className="mt-2 space-y-2">
+      <ul className="mt-2 space-y-3">
         {workouts.map((log, index) => (
-          <li key={index} className="border p-2 rounded">
-            {log.exercise} - {log.sets} sets × {log.reps} reps @ {log.weight}kg
+          <li key={index} className="border p-3 rounded shadow-sm bg-white">
+            <div className="flex justify-between">
+              <span className="font-semibold">{log.exercise}</span>
+              <span className="text-sm text-gray-500">{log.date}</span>
+            </div>
+            <p className="text-gray-700">
+              {log.sets} sets x {log.reps} reps @ {log.weight}kg
+            </p>
           </li>
         ))}
       </ul>
