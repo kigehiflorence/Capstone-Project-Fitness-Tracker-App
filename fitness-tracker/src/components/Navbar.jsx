@@ -1,13 +1,42 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const navStyle = {
+    backgroundColor: "black",
+    padding: "16px",
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
+  };
+
+  const linkStyle = {
+    padding: "10px 20px",
+    backgroundColor: "hotpink",
+    color: "white",
+    fontWeight: "bold",
+    borderRadius: "25px",
+    textDecoration: "none",
+    transition: "all 0.3s ease",
+  };
+
+  const hoverStyle = {
+    backgroundColor: "deeppink",
+  };
+
   return (
-    <nav className="bg-black p-4 flex justify-center gap-4 shadow-md">
+    <nav style={navStyle}>
       {["Home", "History", "Exercises", "Progress"].map((page) => (
         <Link
           key={page}
           to={page === "Home" ? "/" : `/${page.toLowerCase()}`}
-          className="px-4 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition"
+          style={linkStyle}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = hoverStyle.backgroundColor)
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = linkStyle.backgroundColor)
+          }
         >
           {page}
         </Link>

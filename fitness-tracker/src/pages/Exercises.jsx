@@ -9,13 +9,35 @@ function Exercises() {
   ];
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Exercises</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div style={{ color: "white" }}>
+      {/* Page title */}
+      <h1
+        style={{
+          fontSize: "2rem",
+          fontWeight: "bold",
+          color: "hotpink",
+          marginBottom: "1.5rem",
+        }}
+      >
+        Exercises
+      </h1>
+
+      {/* Cards grid */}
+      <div style={{ display: "grid", gap: "20px", gridTemplateColumns: "1fr 1fr" }}>
         {exerciseList.map((exercise, index) => (
-          <div key={index} className="border p-4 rounded shadow">
-            <h2 className="font-semibold">{exercise.name}</h2>
-            <p>{exercise.description}</p>
+          <div
+            key={index}
+            style={{
+              background: "#1a1a1a",
+              padding: "20px",
+              borderRadius: "16px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.5)",
+            }}
+          >
+            <h2 style={{ margin: "0 0 8px", color: "hotpink" }}>
+              {exercise.name}
+            </h2>
+            <p style={{ margin: 0 }}>{exercise.description}</p>
           </div>
         ))}
       </div>

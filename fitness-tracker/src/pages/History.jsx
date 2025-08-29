@@ -9,16 +9,45 @@ function History() {
   ];
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Workout History</h1>
-      <ul className="mt-4 space-y-2">
+    <div style={{ color: "white" }}>
+      {/* Page title */}
+      <h1
+        style={{
+          fontSize: "2rem",
+          fontWeight: "bold",
+          color: "hotpink",
+          marginBottom: "1.5rem",
+        }}
+      >
+        Workout History
+      </h1>
+
+      {/* Cards container */}
+      <div style={{ display: "grid", gap: "20px" }}>
         {workouts.map((workout, index) => (
-          <li key={index} className="border p-2 rounded">
-            <strong>{workout.date}</strong> – {workout.exercise}{" "}
-            {workout.reps ? `${workout.reps} reps` : workout.duration}
-          </li>
+          <div
+            key={index}
+            style={{
+              background: "#1a1a1a",
+              padding: "20px",
+              borderRadius: "16px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.5)",
+            }}
+          >
+            <p style={{ margin: 0, fontSize: "0.9rem", color: "#bbb" }}>
+              {workout.date}
+            </p>
+            <h2 style={{ margin: "8px 0", color: "hotpink" }}>
+              {workout.exercise}
+            </h2>
+            <p style={{ margin: 0 }}>
+              {workout.reps
+                ? `${workout.reps} reps`
+                : workout.duration}
+            </p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
