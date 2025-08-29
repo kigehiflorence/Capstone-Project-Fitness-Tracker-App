@@ -7,7 +7,7 @@ A simple and responsive fitness tracking application built with **React** and **
 
 ## 🚀 Live Demo
 
-🔗 [View the Live App](https://your-vercel-or-netlify-link.com)
+🔗 [View the Live App](https://68b157b65afd34ec2fd72eae--flo-fitness-tracker-app.netlify.app/)
 
 ---
 
